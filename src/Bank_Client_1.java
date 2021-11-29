@@ -2,6 +2,7 @@ import java.io.*;
 import java.net.*;
 public class Bank_Client_1
 {
+	@SuppressWarnings("resource")
 	public static void main(String args[]) throws IOException
 	{
 		//Set up the socket in and out variables
