@@ -89,17 +89,6 @@ public class SharedActionState{
     				theOutput = "Do action completed.  Shared Variable now = " + mySharedVariable;
 
        			}
-       			else if (myThreadName.equals("ActionServerThread4")) {
-    				/*	Multiply by 20
-						Divide by 10
-						Subtract 1
-    				 */
-       				mySharedVariable = mySharedVariable * 20;
-       				mySharedVariable = mySharedVariable / 10;
-       				mySharedVariable = mySharedVariable - 1;
-    				System.out.println(myThreadName + " made the SharedVariable " + mySharedVariable);
-    				theOutput = "Do action completed.  Shared Variable now = " + mySharedVariable;
-       			}
        			else {System.out.println("Error - thread call not recognised.");}
     		}
     		else { //incorrect request
