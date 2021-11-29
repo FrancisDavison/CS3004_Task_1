@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+
 public class Bank_Client_1
 {
 	@SuppressWarnings("resource")
@@ -28,7 +29,7 @@ public class Bank_Client_1
 		
 		catch(IOException e)
 		{
-			System.err.println("Couldn't get the I/O for the connection to: "+BankSocketNumber);
+			System.err.println("Couldn't get the I/O connection to: "+BankSocketNumber);
 			System.exit(1);
 		}
 		
@@ -36,7 +37,7 @@ public class Bank_Client_1
 		String FromServer;
 		String FromUser;
 		
-		System.out.println("Initialised "+BankClientID+" clint and IO connections");
+		System.out.println("Initialised "+BankClientID+" client and IO connections");
 		
 		//This is modified as it's the client that speaks first
 		
@@ -45,17 +46,11 @@ public class Bank_Client_1
 			FromUser=stdIn.readLine();
 			if(FromUser!=null)
 			{
-				System.out.println(BankClientID+" sending "+FromUser+" to BankServer");
+				System.out.println(BankClientID+" sending "+FromUser+" to Bank Server");
 				out.println(FromUser);
 			}
 			FromServer=in.readLine();
 			System.out.println(BankClientID+" recieved "+FromServer+" from Bank Server");
 		}
-		
-		//Tidy up - not really needed due to true condition in while loop
-	    //out.close();
-	    //in.close();
-	    //stdIn.close();
-	    //ActionClientSocket.close();
 	}
 }
