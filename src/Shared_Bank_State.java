@@ -50,7 +50,7 @@ public class Shared_Bank_State
 		String Money="";
 		int length=TheInput.length()-1;
 		
-		//Add Money===========================================================================
+		//Add Money ========================================================================
 		if(TheInput.charAt(0)=='A'||TheInput.charAt(0)=='a')
 		{
 			if(MyThreadName.equals("BankServerThread1")) //Client 1/A
@@ -108,15 +108,20 @@ public class Shared_Bank_State
 			}
 			else
 			{
-				//Invalid Thread Name =============================================
+				//Invalid Thread Name
 			}
 		}
 		
-		if(TheInput.charAt(0)=='S'||TheInput.charAt(0)=='s') //Subtract Money
+		//Subtract Money ====================================================================
+		if(TheInput.charAt(0)=='S'||TheInput.charAt(0)=='s')
 		{
 			if(MyThreadName.equals("BankServerThread1"))
 			{
 				if(TheInput.charAt(15)!='A'&&TheInput.charAt(15)!='a')
+				{
+					//Client does not own this account
+				}
+				else
 				{
 					for(int i=17;i<=length-1;i++)
 					{
@@ -131,6 +136,10 @@ public class Shared_Bank_State
 			{
 				if(TheInput.charAt(15)!='B'&&TheInput.charAt(15)!='b')
 				{
+					//Client does not own this account
+				}
+				else
+				{
 					for(int i=17;i<=length-1;i++)
 					{
 						Money+=TheInput.charAt(i);
@@ -143,6 +152,10 @@ public class Shared_Bank_State
 			{
 				if(TheInput.charAt(15)!='C'&&TheInput.charAt(15)!='c')
 				{
+					//Client does not own this account
+				}
+				else
+				{
 					for(int i=17;i<=length-1;i++)
 					{
 						Money+=TheInput.charAt(i);
@@ -151,10 +164,22 @@ public class Shared_Bank_State
 					MyBalances[2]-=Money_Double;
 				}
 			}
+			else
+			{
+				//Invalid Thread Name
+			}
 		}
 		
-		if(TheInput.charAt(0)=='T'||TheInput.charAt(0)=='t') //Transfer Money
+		//Transfer Money =====================================================================
+		if(TheInput.charAt(0)=='T'||TheInput.charAt(0)=='t')
 		{
+			if(MyThreadName.equals("BankServerThread1"))
+			{
+				if(TheInput.charAt(15)!='A'&&TheInput.charAt(15)!='a')
+				{
+					
+				}
+			}
 		}
 		
 		
