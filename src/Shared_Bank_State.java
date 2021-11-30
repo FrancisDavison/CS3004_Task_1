@@ -58,6 +58,8 @@ public class Shared_Bank_State
 				if(TheInput.charAt(10)!='A'&&TheInput.charAt(10)!='a')
 				{
 					//Client does not own this account
+					TheOutput=MyThreadName+" does not own this account";
+					return TheOutput;
 				}
 				else
 				{
@@ -68,6 +70,8 @@ public class Shared_Bank_State
 					double Money_Double = Double.parseDouble(Money);
 					MyBalances[0]+=Money_Double;
 					//Return Balance
+					TheOutput=MyThreadName+" added money to their account, new balance is: "+ MyBalances[0];
+					return TheOutput;
 				}
 			}
 			
@@ -76,6 +80,8 @@ public class Shared_Bank_State
 				if(TheInput.charAt(10)!='B'&&TheInput.charAt(10)!='b')
 				{
 					//Client does not own this account
+					TheOutput=MyThreadName+" does not own this account";
+					return TheOutput;
 				}
 				else
 				{
@@ -86,6 +92,8 @@ public class Shared_Bank_State
 					double Money_Double = Double.parseDouble(Money);
 					MyBalances[1]+=Money_Double;
 					//Return Balance
+					TheOutput=MyThreadName+" added money to their account, new balance is: "+ MyBalances[1];
+					return TheOutput;
 				}
 			}
 			
@@ -94,6 +102,8 @@ public class Shared_Bank_State
 				if(TheInput.charAt(10)!='C'&&TheInput.charAt(10)!='c')
 				{
 					//Client does not own this account
+					TheOutput=MyThreadName+" does not own this account";
+					return TheOutput;
 				}
 				else
 				{
@@ -104,6 +114,8 @@ public class Shared_Bank_State
 					double Money_Double = Double.parseDouble(Money);
 					MyBalances[2]+=Money_Double;
 					//Return Balance
+					TheOutput=MyThreadName+" added money to their account, new balance is: "+ MyBalances[2];
+					return TheOutput;
 				}
 			}
 			else
@@ -120,6 +132,8 @@ public class Shared_Bank_State
 				if(TheInput.charAt(15)!='A'&&TheInput.charAt(15)!='a')
 				{
 					//Client does not own this account
+					TheOutput=MyThreadName+" does not own this account";
+					return TheOutput;
 				}
 				else
 				{
@@ -129,6 +143,9 @@ public class Shared_Bank_State
 					}
 					double Money_Double = Double.parseDouble(Money);
 					MyBalances[0]-=Money_Double;
+					//Return Balance
+					TheOutput=MyThreadName+" removed money from their account, new balance is: "+ MyBalances[0];
+					return TheOutput;
 				}
 			}
 			
@@ -137,6 +154,8 @@ public class Shared_Bank_State
 				if(TheInput.charAt(15)!='B'&&TheInput.charAt(15)!='b')
 				{
 					//Client does not own this account
+					TheOutput=MyThreadName+" does not own this account";
+					return TheOutput;
 				}
 				else
 				{
@@ -146,6 +165,9 @@ public class Shared_Bank_State
 					}
 					double Money_Double = Double.parseDouble(Money);
 					MyBalances[1]-=Money_Double;
+					//Return Balance
+					TheOutput=MyThreadName+" removed money from their account, new balance is: "+ MyBalances[1];
+					return TheOutput;
 				}
 			}
 			
@@ -154,6 +176,8 @@ public class Shared_Bank_State
 				if(TheInput.charAt(15)!='C'&&TheInput.charAt(15)!='c')
 				{
 					//Client does not own this account
+					TheOutput=MyThreadName+" does not own this account";
+					return TheOutput;
 				}
 				else
 				{
@@ -163,11 +187,16 @@ public class Shared_Bank_State
 					}
 					double Money_Double = Double.parseDouble(Money);
 					MyBalances[2]-=Money_Double;
+					//Return Balance
+					TheOutput=MyThreadName+" removed money from their account, new balance is: "+ MyBalances[2];
+					return TheOutput;
 				}
 			}
 			else
 			{
 				//Invalid Thread Name
+				TheOutput=MyThreadName+" recieved an incorrect thread name";
+				return TheOutput;
 			}
 		}
 		
@@ -179,6 +208,8 @@ public class Shared_Bank_State
 				if(TheInput.charAt(15)!='A'&&TheInput.charAt(15)!='a')
 				{
 					//Client does not own this account
+					TheOutput=MyThreadName+" does not own this account";
+					return TheOutput;
 				}
 				else
 				{
@@ -191,6 +222,9 @@ public class Shared_Bank_State
 						double Money_Double = Double.parseDouble(Money);
 						MyBalances[0]-=Money_Double;
 						MyBalances[1]+=Money_Double;
+						//Return Balance
+						TheOutput=MyThreadName+" transferred money to Account B, remaining balance: "+MyBalances[0];
+						return TheOutput;
 					}
 					if(TheInput.charAt(17)=='C'||TheInput.charAt(17)=='c')
 					{
@@ -201,10 +235,15 @@ public class Shared_Bank_State
 						double Money_Double = Double.parseDouble(Money);
 						MyBalances[0]-=Money_Double;
 						MyBalances[2]+=Money_Double;
+						//Return Balance
+						TheOutput=MyThreadName+" transferred money to Account C, remaining balance: "+MyBalances[0];
+						return TheOutput;
 					}
 					else
 					{
 						//Invalid destination account
+						TheOutput=MyThreadName+" recieved an incorrect destination account";
+						return TheOutput;
 					}
 				}
 			}
@@ -214,6 +253,8 @@ public class Shared_Bank_State
 				if(TheInput.charAt(15)!='B'&&TheInput.charAt(15)!='b')
 				{
 					//Client does not own this account
+					TheOutput=MyThreadName+" does not own this account";
+					return TheOutput;
 				}
 				else
 				{
@@ -226,6 +267,9 @@ public class Shared_Bank_State
 						double Money_Double = Double.parseDouble(Money);
 						MyBalances[1]-=Money_Double;
 						MyBalances[0]+=Money_Double;
+						//Return Balance
+						TheOutput=MyThreadName+" transferred money to Account A, remaining balance: "+MyBalances[1];
+						return TheOutput;
 					}
 					if(TheInput.charAt(17)=='C'||TheInput.charAt(17)=='c')
 					{
@@ -236,19 +280,26 @@ public class Shared_Bank_State
 						double Money_Double = Double.parseDouble(Money);
 						MyBalances[1]-=Money_Double;
 						MyBalances[2]+=Money_Double;
+						//Return Balance
+						TheOutput=MyThreadName+" transferred money to Account C, remaining balance: "+MyBalances[1];
+						return TheOutput;
 					}
 					else
 					{
 						//Invalid destination account
+						TheOutput=MyThreadName+" recieved an incorrect destination account";
+						return TheOutput;
 					}
 				}
 			}
 			
-			if(MyThreadName.equals("BankServeThread3"))
+			if(MyThreadName.equals("BankServerThread3"))
 			{
 				if(TheInput.charAt(15)!='C'&&TheInput.charAt(15)!='c')
 				{
 					//Client does not own this account
+					TheOutput=MyThreadName+" does not own this account";
+					return TheOutput;
 				}
 				else
 				{
@@ -261,6 +312,9 @@ public class Shared_Bank_State
 						double Money_Double = Double.parseDouble(Money);
 						MyBalances[2]-=Money_Double;
 						MyBalances[0]+=Money_Double;
+						//Return Balance
+						TheOutput=MyThreadName+" transferred money to Account A, remaining balance: "+MyBalances[2];
+						return TheOutput;
 					}
 					if(TheInput.charAt(17)=='B'||TheInput.charAt(17)=='b')
 					{
@@ -271,12 +325,24 @@ public class Shared_Bank_State
 						double Money_Double = Double.parseDouble(Money);
 						MyBalances[2]-=Money_Double;
 						MyBalances[1]+=Money_Double;
+						//Return Balance
+						TheOutput=MyThreadName+" transferred money to Account B, remaining balance: "+MyBalances[2];
+						return TheOutput;
 					}
 					else
 					{
 						//Invalid destination account
+						TheOutput=MyThreadName+" recieved an incorrect destination account";
+						return TheOutput;
+						
 					}
 				}
+			}
+			else
+			{
+				//Invalid Thread Name
+				TheOutput=MyThreadName+" recieved an incorrect thread name";
+				return TheOutput;
 			}
 		}
 		
@@ -285,8 +351,5 @@ public class Shared_Bank_State
 			TheOutput=MyThreadName+" recieved an incorrect Action";
 			return TheOutput;
 		}
-		//Return the output message to the BankServer
-		System.out.println(TheOutput);
-		return TheOutput;
 	}
 }
