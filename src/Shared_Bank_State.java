@@ -148,6 +148,7 @@ public class Shared_Bank_State
 					MyBalances[1]-=Money_Double;
 				}
 			}
+			
 			if(MyThreadName.equals("BankServerThread3"))
 			{
 				if(TheInput.charAt(15)!='C'&&TheInput.charAt(15)!='c')
@@ -177,18 +178,112 @@ public class Shared_Bank_State
 			{
 				if(TheInput.charAt(15)!='A'&&TheInput.charAt(15)!='a')
 				{
-					
+					//Client does not own this account
+				}
+				else
+				{
+					if(TheInput.charAt(17)=='B'||TheInput.charAt(17)=='b')
+					{
+						for(int i=19;i<=length-1;i++)
+						{
+							Money+=TheInput.charAt(i);
+						}
+						double Money_Double = Double.parseDouble(Money);
+						MyBalances[0]-=Money_Double;
+						MyBalances[1]+=Money_Double;
+					}
+					if(TheInput.charAt(17)=='C'||TheInput.charAt(17)=='c')
+					{
+						for(int i=19;i<=length-1;i++)
+						{
+							Money+=TheInput.charAt(i);
+						}
+						double Money_Double = Double.parseDouble(Money);
+						MyBalances[0]-=Money_Double;
+						MyBalances[2]+=Money_Double;
+					}
+					else
+					{
+						//Invalid destination account
+					}
+				}
+			}
+			
+			if(MyThreadName.equals("BankServerThread2"))
+			{
+				if(TheInput.charAt(15)!='B'&&TheInput.charAt(15)!='b')
+				{
+					//Client does not own this account
+				}
+				else
+				{
+					if(TheInput.charAt(17)=='A'||TheInput.charAt(17)=='a')
+					{
+						for(int i=19;i<=length-1;i++)
+						{
+							Money+=TheInput.charAt(i);
+						}
+						double Money_Double = Double.parseDouble(Money);
+						MyBalances[1]-=Money_Double;
+						MyBalances[0]+=Money_Double;
+					}
+					if(TheInput.charAt(17)=='C'||TheInput.charAt(17)=='c')
+					{
+						for(int i=19;i<=length-1;i++)
+						{
+							Money+=TheInput.charAt(i);
+						}
+						double Money_Double = Double.parseDouble(Money);
+						MyBalances[1]-=Money_Double;
+						MyBalances[2]+=Money_Double;
+					}
+					else
+					{
+						//Invalid destination account
+					}
+				}
+			}
+			
+			if(MyThreadName.equals("BankServeThread3"))
+			{
+				if(TheInput.charAt(15)!='C'&&TheInput.charAt(15)!='c')
+				{
+					//Client does not own this account
+				}
+				else
+				{
+					if(TheInput.charAt(17)=='A'||TheInput.charAt(17)=='a')
+					{
+						for(int i=19;i<=length-1;i++)
+						{
+							Money+=TheInput.charAt(i);
+						}
+						double Money_Double = Double.parseDouble(Money);
+						MyBalances[2]-=Money_Double;
+						MyBalances[0]+=Money_Double;
+					}
+					if(TheInput.charAt(17)=='B'||TheInput.charAt(17)=='b')
+					{
+						for(int i=19;i<=length-1;i++)
+						{
+							Money+=TheInput.charAt(i);
+						}
+						double Money_Double = Double.parseDouble(Money);
+						MyBalances[2]-=Money_Double;
+						MyBalances[1]+=Money_Double;
+					}
+					else
+					{
+						//Invalid destination account
+					}
 				}
 			}
 		}
 		
-		
-		
-		
-	
 		else //Incorrect Request
 		{
 			TheOutput=MyThreadName+" recieved an incorrect Action";
+			return TheOutput;
 		}
 		//Return the output message to the BankServer
 		System.out.println(TheOutput);
