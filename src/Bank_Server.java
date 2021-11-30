@@ -11,11 +11,11 @@ public class Bank_Server
 		String BankServerName="Bank Server";
 		int BankServerNumber=4545;
 		
-		double SharedVariable[]={1000,1000,1000};
+		double Balances[]={1000,1000,1000};
 		
 		//Create the shared object in the global scope...
 		
-		Shared_Bank_State OurSharedBankStateObject = new Shared_Bank_State(SharedVariable);
+		Shared_Bank_State OurSharedBankStateObject = new Shared_Bank_State(Balances);
 		
 		//Make the server socket
 		

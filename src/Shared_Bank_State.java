@@ -5,14 +5,13 @@ public class Shared_Bank_State
 {
 	private Shared_Bank_State MySharedObj;
 	private String MyThreadName;
-	private double MySharedVariable;
 	private boolean Accessing=false; //True if thread has lock, false otherwise
 	private int ThreadsWaiting=0; //Number of waiting writers
-	
-	//Constructor4
-	Shared_Bank_State(double[] SharedVariable)
+	private double[] MyBalances;
+	//Constructor
+	Shared_Bank_State(double[] Balances)
 	{
-		double[] MySharedVariable=SharedVariable;
+		MyBalances=Balances;
 	}
 	
 	//Attempt to acquire lock
@@ -48,51 +47,123 @@ public class Shared_Bank_State
 	{
 		System.out.println(MyThreadName+" recieved "+TheInput);
 		String TheOutput=null;
-		//Check what client said
-		if(TheInput.equalsIgnoreCase("Do my action"))
+		String Money="";
+		int length=TheInput.length()-1;
+		
+		//Add Money===========================================================================
+		if(TheInput.charAt(0)=='A'||TheInput.charAt(0)=='a')
 		{
-			//Correct Request
-			if(MyThreadName.equals("BankServerThread1"))
+			if(MyThreadName.equals("BankServerThread1")) //Client 1/A
 			{
-				//Here do all the stuff like deposit, withdraw, transfer, etc
-				//Add 20, Multiply by 5, Divide by 3, Just for example
-				MySharedVariable+=20;
-				MySharedVariable*=5;
-				MySharedVariable/=3;
-				System.out.println(MyThreadName+" made the Shared Variable "+MySharedVariable);
-				TheOutput="Do action completed. Shared Variable now="+MySharedVariable;
+				if(TheInput.charAt(10)!='A'&&TheInput.charAt(10)!='a')
+				{
+					//Client does not own this account
+				}
+				else
+				{
+					for(int i=12;i<=length-1;i++)
+					{
+						Money+=TheInput.charAt(i);
+					}
+					double Money_Double = Double.parseDouble(Money);
+					MyBalances[0]+=Money_Double;
+					//Return Balance
+				}
 			}
 			
-			else if(MyThreadName.equals("BankServerThread2"))
+			if(MyThreadName.equals("BankServerThread2")) //Client 2/B
 			{
-				//Here do all the stuff like deposit, withdraw, transfer, etc
-				//Subtract 5, Multiply by 10, Divide by 2.5
-				MySharedVariable-=5;
-				MySharedVariable*=10;
-				MySharedVariable/=2.5;
-				System.out.println(MyThreadName+" made the Shared Variable "+MySharedVariable);
-				TheOutput="Do action completed. Shared Variable now="+MySharedVariable;
+				if(TheInput.charAt(10)!='B'&&TheInput.charAt(10)!='b')
+				{
+					//Client does not own this account
+				}
+				else
+				{
+					for(int i=12;i<=length-1;i++)
+					{
+						Money+=TheInput.charAt(i);
+					}
+					double Money_Double = Double.parseDouble(Money);
+					MyBalances[1]+=Money_Double;
+					//Return Balance
+				}
 			}
 			
-			else if(MyThreadName.equals("BankServerThread3"))
+			if(MyThreadName.equals("BankServerThread3")) //Client 3/C
 			{
-				//Here do all the stuff like deposit, withdraw, transfer, etc
-				//Subtract 50, Divide by 2, Multiply by 33
-				MySharedVariable-=50;
-				MySharedVariable/=2;
-				MySharedVariable*=33;
-				System.out.println(MyThreadName+" made the Shared Variable "+MySharedVariable);
-				TheOutput="Do action completed. Shared Variable now="+MySharedVariable;
+				if(TheInput.charAt(10)!='C'&&TheInput.charAt(10)!='c')
+				{
+					//Client does not own this account
+				}
+				else
+				{
+					for(int i=12;i<=length-1;i++)
+					{
+						Money+=TheInput.charAt(i);
+					}
+					double Money_Double = Double.parseDouble(Money);
+					MyBalances[2]+=Money_Double;
+					//Return Balance
+				}
 			}
-			else //Incorrect Thread call
+			else
 			{
-				System.out.println("Error - Thread call not recognised");
+				//Invalid Thread Name =============================================
 			}
 		}
 		
+		if(TheInput.charAt(0)=='S'||TheInput.charAt(0)=='s') //Subtract Money
+		{
+			if(MyThreadName.equals("BankServerThread1"))
+			{
+				if(TheInput.charAt(15)!='A'&&TheInput.charAt(15)!='a')
+				{
+					for(int i=17;i<=length-1;i++)
+					{
+						Money+=TheInput.charAt(i);
+					}
+					double Money_Double = Double.parseDouble(Money);
+					MyBalances[0]-=Money_Double;
+				}
+			}
+			
+			if(MyThreadName.equals("BankServerThread2"))
+			{
+				if(TheInput.charAt(15)!='B'&&TheInput.charAt(15)!='b')
+				{
+					for(int i=17;i<=length-1;i++)
+					{
+						Money+=TheInput.charAt(i);
+					}
+					double Money_Double = Double.parseDouble(Money);
+					MyBalances[1]-=Money_Double;
+				}
+			}
+			if(MyThreadName.equals("BankServerThread3"))
+			{
+				if(TheInput.charAt(15)!='C'&&TheInput.charAt(15)!='c')
+				{
+					for(int i=17;i<=length-1;i++)
+					{
+						Money+=TheInput.charAt(i);
+					}
+					double Money_Double = Double.parseDouble(Money);
+					MyBalances[2]-=Money_Double;
+				}
+			}
+		}
+		
+		if(TheInput.charAt(0)=='T'||TheInput.charAt(0)=='t') //Transfer Money
+		{
+		}
+		
+		
+		
+		
+	
 		else //Incorrect Request
 		{
-			TheOutput=MyThreadName+" recieved and incorrect request - only understand \"Do my action!\"";
+			TheOutput=MyThreadName+" recieved an incorrect Action";
 		}
 		//Return the output message to the BankServer
 		System.out.println(TheOutput);
