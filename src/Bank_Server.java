@@ -1,3 +1,5 @@
+//====================Modified from CS3004 Lab 4 Action Server, Simon Taylor, 2021====================
+
 import java.io.*;
 import java.net.*;
 
@@ -11,7 +13,7 @@ public class Bank_Server
 		String BankServerName="Bank Server";
 		int BankServerNumber=4545;
 		
-		double Balances[]={1000,1000,1000};
+		double Balances[]={1000,1000,1000}; //Original double changed to array of doubles to allow three values to be stored in one variable
 		
 		//Create the shared object in the global scope...
 		
@@ -33,7 +35,9 @@ public class Bank_Server
 		while(listening)
 		{
 			new Bank_Server_Thread(BankServerSocket.accept(), "BankServerThread1", OurSharedBankStateObject).start();
+			System.out.println("New " + BankServerName + " thread started.");
 			new Bank_Server_Thread(BankServerSocket.accept(), "BankServerThread2", OurSharedBankStateObject).start();
+			System.out.println("New " + BankServerName + " thread started.");
 			new Bank_Server_Thread(BankServerSocket.accept(), "BankServerThread3", OurSharedBankStateObject).start();
 			System.out.println("New " + BankServerName + " thread started.");
 		}

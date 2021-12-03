@@ -6,14 +6,14 @@ public class Bank_Client_1
 	public static void main(String args[]) throws IOException
 	{
 		//Set up the socket in and out variables
-		Socket BankClientSocket=null;
-		PrintWriter out=null;
-		BufferedReader in=null;
-		int BankSocketNumber=4545;
-		String BankServerName="localhost";
-		String BankClientID="BankClient1";
+		Socket BankClientSocket=null; //Set BankClientSocket variable to null
+		PrintWriter out=null; //Set PrintWriter output null
+		BufferedReader in=null; //Set bufferedReader to null
+		int BankSocketNumber=4545; //Sets socket numeber for server, in this case 4545, however can be set to anything, provided the server is set to run and listen on that port
+		String BankServerName="localhost"; //Sets hostname of the server, in this case localhost as it is being run on the same computer. For multi computer setup, change to hostname of computer runnign server
+		String BankClientID="BankClient1"; //Sets the name for this class, in this case BankClient1 as it is Client1
 		
-		try
+		try //This try look
 		{
 			BankClientSocket=new Socket(BankServerName, BankSocketNumber);
 			out=new PrintWriter(BankClientSocket.getOutputStream(), true);
