@@ -13,20 +13,20 @@ public class Bank_Client_1
 		String BankServerName="localhost"; //Sets hostname of the server, in this case localhost as it is being run on the same computer. For multi computer setup, change to hostname of computer runnign server
 		String BankClientID="BankClient1"; //Sets the name for this class, in this case BankClient1 as it is Client1
 		
-		try //This try look
+		try //This try loop will attempt to establish a connection with the bank server, provided socket number and hostname are correct, connecion will be succesful
 		{
 			BankClientSocket=new Socket(BankServerName, BankSocketNumber);
 			out=new PrintWriter(BankClientSocket.getOutputStream(), true);
 			in=new BufferedReader(new InputStreamReader(BankClientSocket.getInputStream()));
 		}
 		
-		catch(UnknownHostException e)
+		catch(UnknownHostException e) //If the hostname is incorrect, UnknownHostException will be thrown and dealt with here
 		{
 			System.err.println("Don't know about host: localhost");
 			System.exit(1);
 		}
 		
-		catch(IOException e)
+		catch(IOException e) //If the socket number is incorrect, IOException will be thrown and dealt with here
 		{
 			System.err.println("Couldn't get the I/O connection to: "+BankSocketNumber);
 			System.exit(1);
@@ -36,20 +36,20 @@ public class Bank_Client_1
 		String FromServer;
 		String FromUser;
 		
-		System.out.println("Initialised "+BankClientID+" client and IO connections");
+		System.out.println("Initialised "+BankClientID+" client and IO connections"); //Inform user that successful connection was established to BankServer
 		
 		//This is modified as it's the client that speaks first
 		
 		while(true)
 		{
-			FromUser=stdIn.readLine();
+			FromUser=stdIn.readLine(); //Allows user to input commands to the server
 			if(FromUser!=null)
 			{
-				System.out.println(BankClientID+" sending "+FromUser+" to Bank Server");
+				System.out.println(BankClientID+" sending "+FromUser+" to Bank Server"); //User input is sent to the server
 				out.println(FromUser);
 			}
 			FromServer=in.readLine();
-			System.out.println(BankClientID+" recieved "+FromServer+" from Bank Server");
+			System.out.println(BankClientID+" recieved "+FromServer+" from Bank Server"); //Confirmation of successful command received from server.
 		}
 	}
 }
