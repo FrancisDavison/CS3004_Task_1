@@ -24,14 +24,14 @@ public class Bank_Client_1
 		
 		catch(UnknownHostException e) //If the hostname is incorrect, UnknownHostException will be thrown and dealt with here
 		{
-			System.err.println("Don't know about host: localhost");
-			System.exit(1);
+			System.err.println("Don't know about host: localhost"); //Inform user of hostname problem
+			System.exit(1); //Close program
 		}
 		
 		catch(IOException e) //If the socket number is incorrect, IOException will be thrown and dealt with here
 		{
-			System.err.println("Couldn't get the I/O connection to: "+BankSocketNumber);
-			System.exit(1);
+			System.err.println("Couldn't get the I/O connection to: "+BankSocketNumber); //Inform user of incorrect socket number
+			System.exit(1); //Close program
 		}
 		
 		BufferedReader stdIn=new BufferedReader(new InputStreamReader(System.in));
