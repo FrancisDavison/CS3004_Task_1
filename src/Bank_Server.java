@@ -32,7 +32,7 @@ public class Bank_Server
 		}
 		System.out.println(BankServerName+" started"); //Inform user that server started successfully
 		
-		while(listening) //essentially while(true), so will always be listeining on port 4545
+		while(listening) //essentially while(true), so will always be listening on port 4545
 		{
 			new Bank_Server_Thread(BankServerSocket.accept(), "BankServerThread1", OurSharedBankStateObject).start(); //When thread 1 is requested, this line accepts it
 			System.out.println("New " + BankServerName + " thread started."); //Inform the user that the thread has been started
