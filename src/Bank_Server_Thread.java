@@ -43,7 +43,7 @@ public class Bank_Server_Thread extends Thread
 			}
 			out.close(); //Close PrintWriter out
 			in.close(); //Close BufferedReader in
-			BankSocket.close(); //Close sokcet
+			BankSocket.close(); //Close socket
 		}
 		
 		catch(IOException e) //Catch IOException
